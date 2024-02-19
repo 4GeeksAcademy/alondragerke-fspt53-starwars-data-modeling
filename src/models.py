@@ -17,21 +17,21 @@ class User(Base):
     first_name = Column(String(60), nullable=False)
     last_name = Column(String(60), nullable=False)
     birthdate = Column(Date)
-    favorites = relationship("Favorites", back_populates="user")
+    favorites = relationship("favorites", back_populates="user")
 
 class Favorites(Base):
     __tablename__ = 'favorites'
     id = Column(Integer, primary_key=True, nullable=False)
-    user_id = Column(Integer, ForeignKey('user.id'), unique=True, nullable=False)
+    user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
     user = relationship("User", back_populates="favorites")
     character_id = Column(Integer, ForeignKey('characters.id'), nullable=False)
     species_id = Column(Integer, ForeignKey('species.id'), nullable=False)
     vehicle_id = Column(Integer, ForeignKey('vehicles.id'), nullable=False)
     planet_id = Column(Integer, ForeignKey('planets.id'), nullable=False)
-    character = relationship("Characters", back_populates="favorites")
-    species = relationship("Species", back_populates="favorites")
-    vehicle = relationship("Vehicles", back_populates="favorites")
-    planet = relationship("Planets", back_populates="favorites")
+    character = relationship("characters", back_populates="favorites")
+    species = relationship("species", back_populates="favorites")
+    vehicle = relationship("vehicles", back_populates="favorites")
+    planet = relationship("planets", back_populates="favorites")
 
 class Characters(Base):
     __tablename__ = 'characters'
@@ -45,7 +45,7 @@ class Characters(Base):
     height = Column(Integer)
     mass = Column(Integer)
     skin_color = Column(String(250))
-    favorites = relationship("Favorites", back_populates="character")
+    favorites = relationship("favorites", back_populates="character")
 
 class Planets(Base):
     __tablename__ = 'planets'
@@ -59,7 +59,7 @@ class Planets(Base):
     gravity = Column(String(250))
     rotation_period = Column(Integer)
     orbital_period = Column(Integer)
-    favorites = relationship("Favorites", back_populates="planet")
+    favorites = relationship("favorites", back_populates="planet")
 
 class Species(Base):
     __tablename__ = 'species'
@@ -73,7 +73,7 @@ class Species(Base):
     eye_colors = Column(String(250))
     hair_colors = Column(String(250))
     skin_colors = Column(String(250))
-    favorites = relationship("Favorites", back_populates="species")
+    favorites = relationship("favorites", back_populates="species")
 
 class Vehicles(Base):
     __tablename__ = 'vehicles'
@@ -88,7 +88,7 @@ class Vehicles(Base):
     crew = Column(Integer)
     passengers = Column(Integer)
     manufacturer = Column(String(250))
-    favorites = relationship("Favorites", back_populates="vehicle")
+    favorites = relationship("favorites", back_populates="vehicle")
 
     def to_dict(self):
         return {}
