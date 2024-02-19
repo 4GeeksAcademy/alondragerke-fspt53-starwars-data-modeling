@@ -82,7 +82,7 @@ class Vehicles(Base):
     model = Column(String(250), index= True)
     vehicle_class = Column(String(250))
     consumables = Column(String(250))
-    lenght = Column(Integer)
+    length = Column(Integer)
     max_atmostphering_speed = Column(Integer)
     cargo_capacity = Column(Integer)
     crew = Column(Integer)
